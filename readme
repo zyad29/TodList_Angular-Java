@@ -31,7 +31,7 @@ todoapp/
 1. Clonez le dépôt
    ```bash
    git clone https://github.com/zyad29/TodList_Angular-Java.git
-   cd todoapp/backend
+   cd todoapp/backend/todo-backend
    ```
 
 2. Démarrez l'application Spring Boot
