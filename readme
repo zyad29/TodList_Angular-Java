@@ -1,0 +1,119 @@
+# TodoApp - Application de Gestion de Tâches
+
+Une application complète de gestion de tâches (Todo List) construite avec un backend Java Spring Boot et un frontend Angular. Cette application permet la création, l'affichage, la mise à jour et la suppression de tâches.
+
+## Fonctionnalités
+
+- Affichage de la liste des tâches
+- Ajout de nouvelles tâches
+- Marquage des tâches comme complétées
+- Suppression des tâches
+- Stockage des données dans une base H2 (en mémoire)
+
+## Prérequis
+
+- Java 17+ (Java 22 est supporté)
+- Node.js 16+ et npm
+- Angular CLI (`npm install -g @angular/cli`)
+
+## Structure du projet
+
+```
+todoapp/
+├── backend/       # API REST Spring Boot
+└── frontend/      # Interface utilisateur Angular
+```
+
+## Installation et démarrage
+
+### Backend (Spring Boot)
+
+1. Clonez le dépôt
+   ```bash
+   git clone https://github.com/votre-username/todoapp.git
+   cd todoapp/backend
+   ```
+
+2. Démarrez l'application Spring Boot
+   ```bash
+   # Sur Windows
+   mvnw spring-boot:run
+   
+   # Sur macOS/Linux
+   ./mvnw spring-boot:run
+   ```
+
+3. Le backend sera accessible à l'adresse : http://localhost:8080/api/todos
+
+### Frontend (Angular)
+
+1. Naviguez vers le dossier frontend
+   ```bash
+   cd ../frontend
+   ```
+
+2. Installez les dépendances
+   ```bash
+   npm install
+   ```
+
+3. Démarrez l'application Angular
+   ```bash
+   ng serve
+   ```
+
+4. Accédez à l'application dans votre navigateur : http://localhost:4200
+
+## Configuration
+
+### Modification du port du backend
+
+Pour changer le port du backend, modifiez le fichier `backend/src/main/resources/application.properties` :
+```properties
+server.port=8081
+```
+
+N'oubliez pas de mettre également à jour l'URL de l'API dans `frontend/src/app/services/todo.service.ts`.
+
+### Base de données
+
+Par défaut, l'application utilise une base de données H2 en mémoire. Vous pouvez accéder à la console H2 à l'adresse http://localhost:8080/h2-console avec les identifiants suivants :
+- JDBC URL: `jdbc:h2:mem:tododb`
+- Username: `sa`
+- Password: (vide)
+
+## Points d'API
+
+| Méthode | URL | Description |
+|---------|-----|-------------|
+| GET | /api/todos | Récupérer toutes les tâches |
+| POST | /api/todos | Créer une nouvelle tâche |
+| GET | /api/todos/{id} | Récupérer une tâche spécifique |
+| PUT | /api/todos/{id} | Mettre à jour une tâche |
+| DELETE | /api/todos/{id} | Supprimer une tâche |
+
+## Technologies utilisées
+
+### Backend
+- Java Spring Boot
+- Spring Data JPA
+- Base de données H2
+- REST API
+
+### Frontend
+- Angular 17+ (architecture standalone)
+- TypeScript
+- Bootstrap (optionnel pour le style)
+- Services HTTP pour la communication avec l'API
+
+## Contraintes connus
+- L'application utilise une base de données en mémoire, donc les données sont perdues au redémarrage du serveur.
+
+## Pistes d'amélioration
+- Ajout de l'authentification utilisateur
+- Persistance des données dans une base SQL permanente
+- Ajout de catégories de tâches
+- Implémentation de tests unitaires et d'intégration
+
+## Licence
+MIT

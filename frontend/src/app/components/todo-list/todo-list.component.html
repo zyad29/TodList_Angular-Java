@@ -1,0 +1,59 @@
+<div class="container mt-4">
+    <h2>Ma Liste de Tâches</h2>
+    
+    <!-- Formulaire d'ajout -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Ajouter une nouvelle tâche</h5>
+        <div class="mb-3">
+          <label for="title" class="form-label">Titre</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="title" 
+            [(ngModel)]="newTodo.title" 
+            placeholder="Entrez le titre de la tâche"
+            required
+          >
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea 
+            class="form-control" 
+            id="description" 
+            [(ngModel)]="newTodo.description" 
+            rows="2" 
+            placeholder="Entrez une description (optionnel)"
+          ></textarea>
+        </div>
+        <button class="btn btn-primary" (click)="addTodo()">Ajouter</button>
+      </div>
+    </div>
+    
+    <!-- Liste des tâches -->
+    <div class="list-group">
+      <div *ngFor="let todo of todos" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <div>
+            <input 
+              title="Marquer comme complétée"
+              type="checkbox" 
+              class="form-check-input me-2" 
+              [checked]="todo.completed" 
+              (change)="toggleCompleted(todo)"
+            >
+            <h5 [ngClass]="{'text-decoration-line-through': todo.completed}">{{ todo.title }}</h5>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-danger" (click)="deleteTodo(todo.id)">Supprimer</button>
+          </div>
+        </div>
+        <p class="mb-1" [ngClass]="{'text-decoration-line-through': todo.completed}">{{ todo.description }}</p>
+        <small class="text-muted">Créée le: {{ todo.createdAt | date:'medium' }}</small>
+      </div>
+      
+      <div *ngIf="todos.length === 0" class="alert alert-info mt-3">
+        Aucune tâche pour le moment. Ajoutez-en une!
+      </div>
+    </div>
+  </div>
